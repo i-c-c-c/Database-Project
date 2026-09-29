@@ -1,26 +1,22 @@
 set linesize 1000
 set pagesize 1000
 
--- Publisher Table
 CREATE TABLE Publisher (
     publisher_id NUMBER PRIMARY KEY,
     name VARCHAR2(100)
 );
 
--- Category Table
 CREATE TABLE Category (
     category_id NUMBER PRIMARY KEY,
     category_name VARCHAR2(50)
 );
 
--- Author Table
 CREATE TABLE Author (
     author_id NUMBER PRIMARY KEY,
     first_name VARCHAR2(50),
     last_name VARCHAR2(50)
 );
 
--- Book Table
 CREATE TABLE Book (
     book_id NUMBER PRIMARY KEY,
     title VARCHAR2(150),
@@ -31,7 +27,6 @@ CREATE TABLE Book (
     FOREIGN KEY (category_id) REFERENCES Category(category_id)
 );
 
--- BookAuthor Table (many-to-many between Book and Author)
 CREATE TABLE BookAuthor (
     book_id NUMBER,
     author_id NUMBER,
@@ -40,7 +35,6 @@ CREATE TABLE BookAuthor (
     FOREIGN KEY (author_id) REFERENCES Author(author_id)
 );
 
--- Copys Table (physical copies of a book)
 CREATE TABLE Copys (
     Copys_id NUMBER PRIMARY KEY,
     book_id NUMBER,
@@ -49,21 +43,18 @@ CREATE TABLE Copys (
     FOREIGN KEY (book_id) REFERENCES Book(book_id)
 );
 
--- Member Table
 CREATE TABLE Member (
     member_id NUMBER PRIMARY KEY,
     name VARCHAR2(50),
     membership_type VARCHAR2(20)
 );
 
--- Staff Table
 CREATE TABLE Staff (
     staff_id NUMBER PRIMARY KEY,
     name VARCHAR2(50),
     role VARCHAR2(30)
 );
 
--- Borrow Table (connects Member, Staff, and Copys)
 CREATE TABLE Borrow (
     borrow_id NUMBER PRIMARY KEY,
     Copys_id NUMBER,
